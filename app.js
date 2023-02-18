@@ -2,17 +2,12 @@ const express = require('express');
 const cors = require('cors');
 const http = require('http');
 const axios = require('axios');
-const https = require('https');
 const fs = require('fs');
 const app = express();
 app.set('trust proxy', 1);
 app.use(cors({
     origin: '*'
 }));
-var options = {
-    key: fs.readFileSync('./selfsigned.key'),
-    cert: fs.readFileSync('./selfsigned.crt')
-  };
 app.use('/api**', (req, res) => {
     console.log(`Request from [${req.ip}], host [${req.query.host}], method: [${req.method}], to [${req.baseUrl}]`);
     const headers = {
